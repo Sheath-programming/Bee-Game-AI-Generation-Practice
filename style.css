@@ -1,0 +1,256 @@
+:root {
+  color-scheme: dark;
+  font-family:
+    Inter, ui-rounded, "Arial Rounded MT Bold", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #11170f;
+  color: #fffdf3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  padding: clamp(0.5rem, 2vw, 1.25rem);
+  background:
+    radial-gradient(circle at top, #344126 0%, transparent 42%),
+    #11170f;
+}
+
+button {
+  min-height: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  background: #f5b82e;
+  color: #1d1a10;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 0.2rem 0.7rem rgba(0, 0, 0, 0.25);
+}
+
+button:hover {
+  background: #ffd565;
+}
+
+button:focus-visible,
+.game:focus-visible {
+  outline: 3px solid #fff4b0;
+  outline-offset: 3px;
+}
+
+.widget {
+  width: min(100%, 56rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: clamp(0.8rem, 2.5vw, 1.4rem);
+  background: #1a2117;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.42);
+}
+
+.game-bar {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 1fr) auto minmax(4.5rem, 1fr) auto;
+  align-items: center;
+  gap: clamp(0.45rem, 2vw, 1rem);
+  min-height: 4.6rem;
+  padding: 0.65rem clamp(0.7rem, 2vw, 1.1rem);
+  background: rgba(20, 27, 16, 0.98);
+}
+
+.game-title {
+  margin: 0;
+  color: #fff7cf;
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.stat-lives {
+  justify-content: flex-end;
+}
+
+.stat-label {
+  color: #d5ddca;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stat strong {
+  color: #fbc54a;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.reset-button {
+  background: transparent;
+  color: #fffdf3;
+  box-shadow: none;
+}
+
+.reset-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.game {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  min-height: 17rem;
+  max-height: min(70vh, 38rem);
+  overflow: hidden;
+  background: #526947;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.photo-fallback,
+.background-layer,
+.photo-shade,
+#gameCanvas,
+.message-panel {
+  position: absolute;
+  inset: 0;
+}
+
+.photo-fallback {
+  background:
+    linear-gradient(180deg, rgba(112, 174, 214, 0.78) 0 48%, transparent 48%),
+    linear-gradient(160deg, transparent 0 53%, #557648 54% 68%, #2d4a2d 69%);
+}
+
+.background-layer {
+  opacity: 0;
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.04);
+  transition: opacity 2.2s ease-in-out;
+  animation: slow-pan 18s ease-in-out infinite alternate;
+}
+
+.background-layer.is-visible {
+  opacity: 1;
+}
+
+.layer-two {
+  animation-direction: alternate-reverse;
+}
+
+.photo-shade {
+  background:
+    linear-gradient(180deg, rgba(8, 13, 8, 0.12), rgba(8, 13, 8, 0.2)),
+    radial-gradient(circle at center, transparent 48%, rgba(8, 13, 8, 0.28));
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+}
+
+.message-panel {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  background: rgba(8, 13, 8, 0.22);
+  text-align: center;
+  transition: opacity 160ms ease;
+}
+
+.message-panel.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.message-panel p {
+  max-width: 22rem;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  padding: 0.75rem 1.15rem;
+  background: rgba(17, 23, 15, 0.82);
+  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.35);
+  color: #fffdf3;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 850;
+  line-height: 1.35;
+  backdrop-filter: blur(4px);
+}
+
+.controls-note {
+  margin: 0;
+  padding: 0.72rem 1rem 0.82rem;
+  color: #d5ddca;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+@keyframes slow-pan {
+  from {
+    transform: scale(1.04) translate3d(-0.7%, -0.4%, 0);
+  }
+  to {
+    transform: scale(1.09) translate3d(0.7%, 0.4%, 0);
+  }
+}
+
+@media (max-width: 36rem) {
+  body {
+    padding: 0.35rem;
+  }
+
+  .game-bar {
+    grid-template-columns: 1fr 1fr auto;
+    min-height: 4.25rem;
+  }
+
+  .game-title {
+    display: none;
+  }
+
+  .stat-lives {
+    justify-content: flex-start;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  .game {
+    aspect-ratio: 4 / 5;
+    min-height: 23rem;
+    max-height: 72vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-layer {
+    animation: none;
+    transition-duration: 0.4s;
+  }
+}

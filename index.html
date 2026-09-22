@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A tiny honeybee flying game with a farm-photo background."
+    />
+    <title>Honeybee Flight</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b2418'/%3E%3Cpath d='M32 8 51 19v26L32 56 13 45V19z' fill='%23f5b82e'/%3E%3Cpath d='M32 15 45 23v18l-13 8-13-8V23z' fill='%231b2418'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="widget" aria-label="Honeybee Flight game">
+      <header class="game-bar">
+        <div class="stat" aria-live="polite">
+          <span class="stat-label">Score</span>
+          <strong id="score">0</strong>
+        </div>
+
+        <p class="game-title">Honeybee Flight</p>
+
+        <div class="stat stat-lives" aria-live="polite">
+          <span class="stat-label">Lives</span>
+          <strong id="lives">3</strong>
+        </div>
+
+        <button id="resetButton" class="reset-button" type="button">
+          Restart
+        </button>
+      </header>
+
+      <section
+        id="game"
+        class="game"
+        tabindex="0"
+        aria-label="Game area. Click, tap, or press Space to make the bee fly upward."
+      >
+        <div class="photo-fallback" aria-hidden="true"></div>
+        <div class="background-layer layer-one" aria-hidden="true"></div>
+        <div class="background-layer layer-two" aria-hidden="true"></div>
+        <div class="photo-shade" aria-hidden="true"></div>
+
+        <canvas id="gameCanvas" aria-hidden="true"></canvas>
+
+        <div id="message" class="message-panel">
+          <p id="messageText">Click or press Space to start</p>
+          <button id="playAgainButton" type="button" hidden>Play again</button>
+        </div>
+      </section>
+
+      <p class="controls-note">Click, tap, or press Space to flap.</p>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
